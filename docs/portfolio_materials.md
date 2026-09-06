@@ -1,0 +1,68 @@
+# Portfolio Materials
+
+## Two-sentence portfolio description
+
+AccessPath is a confidence-aware pedestrian routing prototype for Seattle that treats "no accessibility data" as a distinct state from "good accessibility," comparing shortest, accessibility-optimized, and confidence-aware routes side by side with a scoring model that a volume of positive reports cannot outvote past one reliable severe hazard. Built end-to-end (PostGIS spatial pipeline, FastAPI + A* routing, React/MapLibre frontend) and evaluated against a benchmark frozen before results were seen, with 91 backend and 26 frontend tests plus a full accessibility (WCAG AA) pass.
+
+## Resume bullet
+
+Designed and built a full-stack accessible-routing prototype (PostGIS, FastAPI, React/MapLibre) implementing a dominance-aware confidence-weighted scoring model over 262K crowdsourced accessibility labels and 213K OSM pedestrian segments, with A*-optimized multi-modal routing (2.5–3.3x latency reduction, correctness-verified bit-identical against the pre-optimization baseline) and a frozen, pre-registered evaluation benchmark.
+
+## 30-second recruiter explanation
+
+"AccessPath compares three walking routes in Seattle — shortest, most-accessible, and confidence-aware — using real crowdsourced accessibility data. The interesting engineering problem is that most of Seattle's sidewalks have zero accessibility data, so the system has to treat 'we don't know' as genuinely different from 'we checked and it's fine,' instead of quietly assuming unlabeled streets are okay. I built the whole stack myself — the spatial database, the scoring model, the routing engine, and the map interface — and ran a rigorous, honest evaluation on it rather than just shipping a demo."
+
+## Two-minute technical interview explanation
+
+"The core technical problem is combining sparse, noisy crowdsourced accessibility reports (Project Sidewalk labels — things like missing curb ramps or surface problems) with OpenStreetMap's pedestrian network into a routing system that doesn't overstate its own confidence.
+
+The first version used a straightforward reliability-weighted average to turn a segment's labels into a single accessibility score. Adversarial testing broke it immediately: ten positive curb-ramp reports could mathematically outvote one reliable report of no sidewalk at all, pulling a genuinely inaccessible segment's score up to something that looked fine. So I replaced it with what I call ceiling-capped risk accumulation — the final score is the minimum of a risk-accumulation score and a dominance ceiling computed only from reliable hazard reports. No amount of positive evidence can lift that ceiling. I also separated the *confidence* in a score from the score itself — confidence accounts for agreement between reports, recency, how far a label sat from the segment it matched to, and whether multiple reports actually came from the same source photo (so they don't count as independent confirmation).
+
+For routing, all three modes — shortest, accessible, confidence-aware — run the same A* search over the same graph; they differ only in an edge-weight multiplier that's always ≥1, which is what makes a single haversine-distance heuristic provably admissible for all three at once, not just the shortest-path case. That optimization took the slowest route category from 4.7 seconds to 1.9 seconds, and I verified every single route returned identically before and after the change — not just equally short, the literal same sequence of segments.
+
+The part I'm most careful about is the evaluation. I froze eight benchmark pairs — one per structural category, like a long trip, a trip through heavily-labeled streets, a trip between two disconnected parts of the graph — before I ran a single result, specifically so I couldn't unconsciously cherry-pick favorable examples afterward. The results are genuinely mixed in an interesting way: confidence-aware routing does reduce how much of a route passes through completely unlabeled segments, consistently, but it does that by accepting *more* segments with low-confidence evidence in over half the cases where it had a real choice. I report that trade-off directly in the write-up instead of only highlighting the metric that looks good."
+
+## Five-minute live-demo script
+
+**Setup**: `docker compose up`, open `http://localhost:5173`.
+
+1. **(0:00–0:30) Frame the problem.** "Most routing apps assume every street is equally walkable. This one uses real crowdsourced accessibility reports for Seattle sidewalks — but most streets have zero reports, so the first design decision is: what do you do with 'we don't know'?"
+2. **(0:30–1:30) Select the primary demo pair (`modes_diverge` category — origin/destination visible via the frozen pair file, approximately South Seattle to the Central District/Belltown area).** Click origin, click destination, click "Compare routes." While it loads: "This is a real 11km walk. Watch — three different route lines are about to appear."
+3. **(1:30–3:00) Walk through the three routes on the map.** Point out: `shortest` (solid black) is pure distance. `accessible` (dashed blue) shifts slightly and improves the accessibility score. `confidence_aware` (dotted vermillion) shifts further — open its route card and show the hazard list and the unknown/low-confidence/disputed breakdown. Say the honest number out loud: "This route accepts more documented hazards — 33 versus 23 on the shortest route — in exchange for cutting unknown-segment exposure from 39% to 28%. It's not claiming to be safer; it's claiming to be better-documented, and I can show you exactly which segments and why."
+4. **(3:00–4:00) Show a failure mode handled gracefully.** Either use the `cross_component` pair (two points with genuinely no path between them) to show the explicit "no connected route" message, or point out the snap-disclosure text from an ordinary click ("a closer point existed but wasn't part of the same connected network, so a slightly farther one was used"). "The system tells you when it had to compromise, instead of silently returning something misleading."
+5. **(4:00–5:00) Close with the evaluation discipline.** "Before I ran any of this, I froze eight benchmark pairs and locked the parameters. The full results — including the cases where confidence-aware routing made a metric worse, not just better — are in the evaluation report. I'd rather show you an honest mixed result than a cherry-picked good one."
+
+**Fallback pair**: if the primary pair has any live-demo issue (e.g. a slow network), switch to the `medium` category pair — same 3-way divergence, shorter route (~3.5km), faster to narrate, with a comparably interpretable hazard-count story (10 → 11 → 21 known hazards across the three modes).
+
+## Five likely interviewer questions, honestly answered
+
+**Q1: "How do you know this scoring model is actually better than the simple average, and not just different?"**
+A: I don't claim it's universally better — I claim it fixes a specific, demonstrated failure mode (positive-label volume overriding a known severe hazard) via targeted adversarial tests, and I can show the exact before/after score on that adversarial case (0.62 → 0.05). I haven't validated it against real-world outcomes or real users with accessibility needs, which is the honest limit of what a solo prototype evaluation can establish.
+
+**Q2: "Only 8 evaluation pairs — isn't that too small to mean anything?"**
+A: Yes, for any claim broader than "in these 8 demonstrated cases." I say that explicitly in the evaluation report rather than letting the number of pairs imply more rigor than it has. Eight pairs is enough to demonstrate that the three modes behave differently and to give concrete, inspectable examples of the trade-offs — it is not enough to estimate how often those trade-offs occur across Seattle, and I don't claim otherwise.
+
+**Q3: "What happens when the crowdsourced data is just wrong — a report is outdated or inaccurate?"**
+A: The confidence model down-weights older labels (recency) and requires agreement between labels to reach high confidence, so a single stale or wrong report doesn't produce a high-confidence score on its own — but it can still set the dominance ceiling if it's a hazard report, by design, because I chose to bias toward caution over a hazard that turns out to be false rather than the reverse. That's a real trade-off, not a solved problem — a single wrong severe report can still pull a segment's score down more than it deserves, and I don't have a mechanism to catch that beyond the agreement/recency weighting.
+
+**Q4: "Why build your own scoring model instead of using an existing accessibility index?"**
+A: I wanted to combine two specific things I didn't find combined elsewhere: keeping "no evidence" structurally distinct from "positive evidence" all the way through routing (not just at data-entry time), and making the hazard-dominance rule explicit and testable rather than an emergent property of whatever weights an average happens to use. It's very possible an existing framework does part of this better — I built my own specifically to control and test that one design decision end-to-end.
+
+**Q5: "Is this ready for real users?"**
+A: No, and I say so directly in the README's limitations and ethical-considerations sections. It has no authentication, no rate limiting, an uncalibrated walking-speed constant, and — most importantly — it's evaluated on 8 hand-picked examples, not validated against real pedestrians with real accessibility needs. It's a research prototype demonstrating an approach, not a deployable product.
+
+## The weighted-average scoring failure and the dominance-aware fix
+
+**The failure**: the original (Week 3) model computed `accessibility_score = sum(reliability_weight * label_value) / sum(reliability_weight)` — a straightforward reliability-weighted average. Adversarial testing (Week 3.5) constructed a segment with ten reliable `CurbRamp` (positive) labels and one reliable `NoSidewalk` (severe negative) label. The weighted average scored this segment 0.62 — solidly "accessible" — despite the presence of a report that the segment has no sidewalk at all. The math is correct; the *design* is wrong, because it lets quantity of unrelated positive evidence compensate for a specific, severe, reliably-reported barrier that quantity of *other* evidence cannot actually fix.
+
+**The fix**: `final_score = min(risk_accumulation_score, dominance_ceiling)`. The `dominance_ceiling` is computed *only* from labels that are (a) hazard-type labels and (b) above a reliability cutoff (`RELIABILITY_DOMINANCE_CUTOFF = 0.3`) — positive labels never enter this calculation at all, so they mathematically cannot raise it. On the identical adversarial case, the production model scores 0.05. Four other candidate models were compared before landing on this one (plain weighted average, min-aggregation-only, risk-accumulation-without-a-ceiling) — min-aggregation was rejected as overly conservative (a single low-severity report would cap a segment as harshly as a severe one), and risk-accumulation-without-a-ceiling was rejected because it was still outvotable, just less easily. The ceiling approach was the only one of the four that passed all six adversarial tests defined in Week 3.5 (including a case with *equal* reliable positive and negative evidence, which correctly resolves to a moderate score with near-zero confidence — "contested," not "confidently medium").
+
+## The A* optimization and heuristic admissibility for all three modes
+
+**The problem**: plain Dijkstra (`networkx.shortest_path`) explores outward from the origin in every direction by accumulated cost, with no notion of "toward the destination." For a 14km route this meant relaxing up to 255,676 edges before the destination was even reached — confirmed directly by instrumenting the edge-weight function with a call counter, since NetworkX doesn't expose an explored-node count through its public API.
+
+**The fix**: switch to `networkx.astar_path` with a heuristic equal to the haversine (straight-line) distance from a node to the destination.
+
+**Why one heuristic works for all three routing modes, not just `shortest`**: A* requires an *admissible* heuristic — one that never overestimates the true remaining cost — to guarantee it still finds the optimal path. Every mode's edge weight is `length_m * multiplier`, and `multiplier >= 1` for every mode by construction (`accessible` and `confidence_aware` only ever *increase* cost above raw distance to penalize worse segments; they never decrease it to reward better ones). By the triangle inequality, true path cost is therefore always `>= length_m >= straight_line_distance` for any mode. Since the haversine heuristic never exceeds the straight-line distance, it never overestimates true cost for any of the three modes — one correctness argument covers `shortest`, `accessible`, and `confidence_aware` simultaneously, rather than needing a separate proof (or separate heuristic) per mode.
+
+**Verification, not just argument**: the full benchmark set was run before and after the change and diffed field-by-field. Every `distance_m`, `mean_accessibility`, and `mean_confidence` value was bit-identical across all 8 categories and all 3 modes — not merely equally optimal in cost, but the literal same sequence of segments in the same order. The full 91-test backend suite passed unchanged, and 15 repeated real HTTP requests for the slowest route held container memory flat with no upward drift, ruling out a memory-leak side effect of the change.

@@ -1,0 +1,345 @@
+[
+  {
+    "category": "short",
+    "status": "ok",
+    "snap": {
+      "origin_snap_distance_m": 0.0,
+      "destination_snap_distance_m": 0.0
+    },
+    "modes": {
+      "shortest": {
+        "num_points": 38,
+        "max_consecutive_jump_m": 102.48254176080046,
+        "bbox": {
+          "min_lon": -122.3414582,
+          "max_lon": -122.3381475,
+          "min_lat": 47.6069576,
+          "max_lat": 47.6094562
+        },
+        "issues": []
+      },
+      "accessible": {
+        "num_points": 37,
+        "max_consecutive_jump_m": 108.14476796716077,
+        "bbox": {
+          "min_lon": -122.3414582,
+          "max_lon": -122.3381475,
+          "min_lat": 47.6069576,
+          "max_lat": 47.6094562
+        },
+        "issues": []
+      },
+      "confidence_aware": {
+        "num_points": 37,
+        "max_consecutive_jump_m": 108.14476796716077,
+        "bbox": {
+          "min_lon": -122.3414582,
+          "max_lon": -122.3381475,
+          "min_lat": 47.6069576,
+          "max_lat": 47.6094562
+        },
+        "issues": []
+      }
+    }
+  },
+  {
+    "category": "medium",
+    "status": "ok",
+    "snap": {
+      "origin_snap_distance_m": 0.0,
+      "destination_snap_distance_m": 0.0
+    },
+    "modes": {
+      "shortest": {
+        "num_points": 241,
+        "max_consecutive_jump_m": 114.60381083945224,
+        "bbox": {
+          "min_lon": -122.3529478,
+          "max_lon": -122.3413761,
+          "min_lat": 47.6094213,
+          "max_lat": 47.6349232
+        },
+        "issues": []
+      },
+      "accessible": {
+        "num_points": 248,
+        "max_consecutive_jump_m": 112.29777099139832,
+        "bbox": {
+          "min_lon": -122.3529478,
+          "max_lon": -122.3413761,
+          "min_lat": 47.6094213,
+          "max_lat": 47.6349232
+        },
+        "issues": []
+      },
+      "confidence_aware": {
+        "num_points": 289,
+        "max_consecutive_jump_m": 170.30789862185668,
+        "bbox": {
+          "min_lon": -122.3529478,
+          "max_lon": -122.3414582,
+          "min_lat": 47.609378,
+          "max_lat": 47.6349232
+        },
+        "issues": [
+          "jump of 170m between point 246 and 247"
+        ]
+      }
+    }
+  },
+  {
+    "category": "long",
+    "status": "ok",
+    "snap": {
+      "origin_snap_distance_m": 0.0,
+      "destination_snap_distance_m": 0.0
+    },
+    "modes": {
+      "shortest": {
+        "num_points": 916,
+        "max_consecutive_jump_m": 704.5732785916897,
+        "bbox": {
+          "min_lon": -122.3472066,
+          "max_lon": -122.3338739,
+          "min_lat": 47.6094213,
+          "max_lat": 47.7219555
+        },
+        "issues": [
+          "jump of 202m between point 204 and 205",
+          "jump of 168m between point 220 and 221",
+          "jump of 631m between point 271 and 272",
+          "jump of 705m between point 401 and 402",
+          "jump of 179m between point 583 and 584",
+          "jump of 176m between point 605 and 606",
+          "jump of 185m between point 612 and 613",
+          "jump of 181m between point 634 and 635",
+          "jump of 185m between point 644 and 645",
+          "jump of 153m between point 900 and 901"
+        ]
+      },
+      "accessible": {
+        "num_points": 1124,
+        "max_consecutive_jump_m": 697.4896916780247,
+        "bbox": {
+          "min_lon": -122.3499709,
+          "max_lon": -122.3338739,
+          "min_lat": 47.6094213,
+          "max_lat": 47.7219555
+        },
+        "issues": [
+          "jump of 151m between point 347 and 348",
+          "jump of 697m between point 588 and 589",
+          "jump of 184m between point 847 and 848",
+          "jump of 186m between point 852 and 853",
+          "jump of 153m between point 1108 and 1109"
+        ]
+      },
+      "confidence_aware": {
+        "num_points": 1116,
+        "max_consecutive_jump_m": 697.4896916780247,
+        "bbox": {
+          "min_lon": -122.3499709,
+          "max_lon": -122.3338739,
+          "min_lat": 47.6094213,
+          "max_lat": 47.7219555
+        },
+        "issues": [
+          "jump of 163m between point 326 and 327",
+          "jump of 697m between point 547 and 548",
+          "jump of 179m between point 756 and 757",
+          "jump of 183m between point 791 and 792",
+          "jump of 188m between point 796 and 797",
+          "jump of 158m between point 803 and 804",
+          "jump of 180m between point 820 and 821",
+          "jump of 153m between point 1100 and 1101"
+        ]
+      }
+    }
+  },
+  {
+    "category": "well_labeled_area",
+    "status": "ok",
+    "snap": {
+      "origin_snap_distance_m": 0.0,
+      "destination_snap_distance_m": 0.0
+    },
+    "modes": {
+      "shortest": {
+        "num_points": 11,
+        "max_consecutive_jump_m": 10.185386866802368,
+        "bbox": {
+          "min_lon": -122.3423669,
+          "max_lon": -122.342162,
+          "min_lat": 47.6219757,
+          "max_lat": 47.6221579
+        },
+        "issues": []
+      },
+      "accessible": {
+        "num_points": 12,
+        "max_consecutive_jump_m": 13.354793202513788,
+        "bbox": {
+          "min_lon": -122.3425876,
+          "max_lon": -122.3423649,
+          "min_lat": 47.6219653,
+          "max_lat": 47.6221533
+        },
+        "issues": []
+      },
+      "confidence_aware": {
+        "num_points": 12,
+        "max_consecutive_jump_m": 13.354793202513788,
+        "bbox": {
+          "min_lon": -122.3425876,
+          "max_lon": -122.3423649,
+          "min_lat": 47.6219653,
+          "max_lat": 47.6221533
+        },
+        "issues": []
+      }
+    }
+  },
+  {
+    "category": "heavy_unknown_coverage",
+    "status": "ok",
+    "snap": {
+      "origin_snap_distance_m": 0.0,
+      "destination_snap_distance_m": 0.0
+    },
+    "modes": {
+      "shortest": {
+        "num_points": 4,
+        "max_consecutive_jump_m": 51.7257260249084,
+        "bbox": {
+          "min_lon": -122.3066684,
+          "max_lon": -122.3058214,
+          "min_lat": 47.6556162,
+          "max_lat": 47.6557049
+        },
+        "issues": []
+      },
+      "accessible": {
+        "num_points": 4,
+        "max_consecutive_jump_m": 51.7257260249084,
+        "bbox": {
+          "min_lon": -122.3066684,
+          "max_lon": -122.3058214,
+          "min_lat": 47.6556162,
+          "max_lat": 47.6557049
+        },
+        "issues": []
+      },
+      "confidence_aware": {
+        "num_points": 4,
+        "max_consecutive_jump_m": 51.7257260249084,
+        "bbox": {
+          "min_lon": -122.3066684,
+          "max_lon": -122.3058214,
+          "min_lat": 47.6556162,
+          "max_lat": 47.6557049
+        },
+        "issues": []
+      }
+    }
+  },
+  {
+    "category": "cross_component",
+    "status": "no_connected_route"
+  },
+  {
+    "category": "modes_agree",
+    "status": "ok",
+    "snap": {
+      "origin_snap_distance_m": 0.0,
+      "destination_snap_distance_m": 0.0
+    },
+    "modes": {
+      "shortest": {
+        "num_points": 8,
+        "max_consecutive_jump_m": 7.785697034939227,
+        "bbox": {
+          "min_lon": -122.341748,
+          "max_lon": -122.3414582,
+          "min_lat": 47.609378,
+          "max_lat": 47.6094366
+        },
+        "issues": []
+      },
+      "accessible": {
+        "num_points": 8,
+        "max_consecutive_jump_m": 7.785697034939227,
+        "bbox": {
+          "min_lon": -122.341748,
+          "max_lon": -122.3414582,
+          "min_lat": 47.609378,
+          "max_lat": 47.6094366
+        },
+        "issues": []
+      },
+      "confidence_aware": {
+        "num_points": 8,
+        "max_consecutive_jump_m": 7.785697034939227,
+        "bbox": {
+          "min_lon": -122.341748,
+          "max_lon": -122.3414582,
+          "min_lat": 47.609378,
+          "max_lat": 47.6094366
+        },
+        "issues": []
+      }
+    }
+  },
+  {
+    "category": "modes_diverge",
+    "status": "ok",
+    "snap": {
+      "origin_snap_distance_m": 0.0,
+      "destination_snap_distance_m": 0.0
+    },
+    "modes": {
+      "shortest": {
+        "num_points": 944,
+        "max_consecutive_jump_m": 209.79813877395728,
+        "bbox": {
+          "min_lon": -122.3306003,
+          "max_lon": -122.2786296,
+          "min_lat": 47.5231781,
+          "max_lat": 47.6112901
+        },
+        "issues": [
+          "jump of 210m between point 419 and 420",
+          "jump of 173m between point 705 and 706"
+        ]
+      },
+      "accessible": {
+        "num_points": 1002,
+        "max_consecutive_jump_m": 172.97325555724834,
+        "bbox": {
+          "min_lon": -122.3306003,
+          "max_lon": -122.2788674,
+          "min_lat": 47.5231781,
+          "max_lat": 47.6112901
+        },
+        "issues": [
+          "jump of 166m between point 139 and 140",
+          "jump of 173m between point 749 and 750"
+        ]
+      },
+      "confidence_aware": {
+        "num_points": 1017,
+        "max_consecutive_jump_m": 209.79813877395728,
+        "bbox": {
+          "min_lon": -122.3306003,
+          "max_lon": -122.2788674,
+          "min_lat": 47.5231781,
+          "max_lat": 47.6112901
+        },
+        "issues": [
+          "jump of 166m between point 142 and 143",
+          "jump of 210m between point 457 and 458",
+          "jump of 195m between point 567 and 568"
+        ]
+      }
+    }
+  }
+]

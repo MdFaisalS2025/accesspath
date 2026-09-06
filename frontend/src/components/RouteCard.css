@@ -1,0 +1,125 @@
+.route-card-item {
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  margin-bottom: var(--space-3);
+  background: var(--color-bg);
+}
+
+.route-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: var(--space-3);
+  cursor: pointer;
+  color: inherit;
+  border-radius: 6px 6px 0 0;
+  transition: background var(--transition-fast);
+}
+
+.route-card:hover {
+  background: var(--color-surface);
+}
+
+.route-card--selected {
+  background: #eaf2f8;
+  box-shadow: inset 4px 0 0 var(--color-accent);
+}
+
+.route-card__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.route-card__title {
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+.route-card__pattern {
+  font-weight: 400;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.route-card__note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: var(--space-1) 0;
+}
+
+.route-card__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2) var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.route-card__stats dt {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.route-card__stats dd {
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.route-card__coverage {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.route-card__details {
+  padding: 0 var(--space-3) var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.route-card__details h4,
+.route-card__details h5 {
+  font-size: var(--font-size-sm);
+  margin: var(--space-2) 0 var(--space-1);
+}
+
+.route-card__empty {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: var(--space-1) 0;
+}
+
+.route-card__segment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.route-card__segment-list button {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  border: 1px solid var(--color-danger-text);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.route-card__explanation {
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2);
+}
+
+.route-card details summary {
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  margin-top: var(--space-2);
+}

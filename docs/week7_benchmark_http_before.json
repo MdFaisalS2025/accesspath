@@ -1,0 +1,104 @@
+{
+  "warm": [
+    {
+      "category": "short",
+      "status_code": 200,
+      "elapsed_s_samples": [
+        0.10488299999997253,
+        0.20281899999827147,
+        0.03733520000059798
+      ],
+      "elapsed_s_median": 0.10488299999997253,
+      "elapsed_s_min": 0.03733520000059798,
+      "elapsed_s_max": 0.20281899999827147
+    },
+    {
+      "category": "medium",
+      "status_code": 200,
+      "elapsed_s_samples": [
+        0.35516370000004827,
+        0.647380799999155,
+        0.29206880000128876
+      ],
+      "elapsed_s_median": 0.35516370000004827,
+      "elapsed_s_min": 0.29206880000128876,
+      "elapsed_s_max": 0.647380799999155
+    },
+    {
+      "category": "long",
+      "status_code": 200,
+      "elapsed_s_samples": [
+        5.0416918999999325,
+        4.740433099999791,
+        4.6206572000010055
+      ],
+      "elapsed_s_median": 4.740433099999791,
+      "elapsed_s_min": 4.6206572000010055,
+      "elapsed_s_max": 5.0416918999999325
+    },
+    {
+      "category": "well_labeled_area",
+      "status_code": 200,
+      "elapsed_s_samples": [
+        0.02212119999967399,
+        0.010983099999066326,
+        0.010780099999465165
+      ],
+      "elapsed_s_median": 0.010983099999066326,
+      "elapsed_s_min": 0.010780099999465165,
+      "elapsed_s_max": 0.02212119999967399
+    },
+    {
+      "category": "heavy_unknown_coverage",
+      "status_code": 200,
+      "elapsed_s_samples": [
+        0.02483570000003965,
+        0.029922199999418808,
+        0.008032199999433942
+      ],
+      "elapsed_s_median": 0.02483570000003965,
+      "elapsed_s_min": 0.008032199999433942,
+      "elapsed_s_max": 0.029922199999418808
+    },
+    {
+      "category": "cross_component",
+      "status_code": 200,
+      "response_status": "no_connected_route",
+      "elapsed_s_samples": [
+        0.141377800000555
+      ]
+    },
+    {
+      "category": "modes_agree",
+      "status_code": 200,
+      "elapsed_s_samples": [
+        0.009429399999135057,
+        0.020034999999552383,
+        0.00837619999947492
+      ],
+      "elapsed_s_median": 0.009429399999135057,
+      "elapsed_s_min": 0.00837619999947492,
+      "elapsed_s_max": 0.020034999999552383
+    },
+    {
+      "category": "modes_diverge",
+      "status_code": 200,
+      "elapsed_s_samples": [
+        1.3715793999999732,
+        1.502633899999637,
+        1.4641580999996222
+      ],
+      "elapsed_s_median": 1.4641580999996222,
+      "elapsed_s_min": 1.3715793999999732,
+      "elapsed_s_max": 1.502633899999637
+    }
+  ],
+  "cold_start": {
+    "graph_load_seconds": 1.8570721319993027,
+    "graph_load_rss_mb": 362.2890625,
+    "cold_request_elapsed_s": 5.123911200000293,
+    "warm_request_elapsed_s": 4.982143000001088,
+    "memory_after_restart": "570.6MiB"
+  },
+  "memory_steady_state": "570.6MiB"
+}

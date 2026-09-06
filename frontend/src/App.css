@@ -1,0 +1,217 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  flex: 0 0 auto;
+}
+
+.app__title {
+  font-size: var(--font-size-xl);
+  margin: 0;
+}
+
+.app__body {
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+}
+
+.app__map {
+  flex: 1 1 68%;
+  position: relative;
+  min-width: 0;
+}
+
+.app__sidebar {
+  flex: 0 0 400px;
+  max-width: 400px;
+  min-height: 0;
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  overflow-y: auto;
+  padding: var(--space-4);
+}
+
+.app__disclaimer {
+  flex: 0 0 auto;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  border-top: 2px solid var(--color-warning-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.app__coords {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.app__actions {
+  display: flex;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.app__actions button[type="button"]:first-child {
+  background: var(--color-accent);
+  color: #fff;
+  border: 1px solid var(--color-accent);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.app__actions button[type="button"]:last-child {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.app__loading {
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.route-card-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0;
+}
+
+.snap-notice {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: var(--space-1) 0;
+}
+
+.status-message {
+  padding: var(--space-3);
+  border-radius: 4px;
+  margin: var(--space-3) 0;
+}
+
+.status-message--error {
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-text);
+  color: var(--color-danger-text);
+}
+
+.status-message--warning {
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-text);
+  color: var(--color-warning-text);
+}
+
+.status-message h2 {
+  font-size: var(--font-size-base);
+}
+
+.status-message__retry {
+  margin-top: var(--space-2);
+  background: var(--color-bg);
+  border: 1px solid currentColor;
+  color: inherit;
+  font-weight: 600;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.text-summary {
+  font-size: var(--font-size-sm);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.coverage-control {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.coverage-control__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.coverage-control fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-3);
+}
+
+.coverage-control__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-2);
+}
+
+.coverage-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+}
+
+.coverage-swatch--labeled {
+  background: #2e7d32;
+}
+
+.coverage-swatch--unknown {
+  background: repeating-linear-gradient(45deg, #757575, #757575 2px, #fff 2px, #fff 4px);
+}
+
+.coverage-swatch--low-confidence {
+  background: #6b4400;
+}
+
+.coverage-swatch--disputed {
+  background: #8a1300;
+  border-radius: 50%;
+}
+
+.coverage-swatch--labels {
+  background: #0b5fa5;
+  border-radius: 50%;
+}
+
+@media (max-width: 767px) {
+  .app__body {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .app__map {
+    flex: 0 0 55vh;
+    height: 55vh;
+  }
+
+  .app__sidebar {
+    flex: 1 1 auto;
+    max-width: none;
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+  }
+}

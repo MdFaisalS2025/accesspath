@@ -1,0 +1,353 @@
+{
+  "generated_at": "2026-09-06T20:47:28.860037+00:00",
+  "graph_nodes": 184695,
+  "graph_edges": 213508,
+  "pairs": [
+    {
+      "category": "short",
+      "origin": {
+        "node_id": 1,
+        "lat": 47.6094213,
+        "lon": -122.3414582
+      },
+      "destination": {
+        "node_id": 948,
+        "lat": 47.6069576,
+        "lon": -122.3381475
+      },
+      "modes": {
+        "shortest": {
+          "elapsed_s": 0.001870592999694054,
+          "weight_evaluations": 1358,
+          "distance_m": 420.5240262221582,
+          "mean_accessibility": 0.531406575628156,
+          "mean_confidence": 0.039961991894669625,
+          "segment_count": 31,
+          "unknown_segments": 19,
+          "dominant_hazards": 0
+        },
+        "accessible": {
+          "elapsed_s": 0.002040201999989222,
+          "weight_evaluations": 1368,
+          "distance_m": 420.59819779493665,
+          "mean_accessibility": 0.539488110830804,
+          "mean_confidence": 0.04468796082095261,
+          "segment_count": 30,
+          "unknown_segments": 18,
+          "dominant_hazards": 0
+        },
+        "confidence_aware": {
+          "elapsed_s": 0.002250211999125895,
+          "weight_evaluations": 1395,
+          "distance_m": 420.59819779493665,
+          "mean_accessibility": 0.539488110830804,
+          "mean_confidence": 0.04468796082095261,
+          "segment_count": 30,
+          "unknown_segments": 18,
+          "dominant_hazards": 0
+        }
+      },
+      "status": "ok",
+      "modes_all_identical": false
+    },
+    {
+      "category": "medium",
+      "origin": {
+        "node_id": 1,
+        "lat": 47.6094213,
+        "lon": -122.3414582
+      },
+      "destination": {
+        "node_id": 134,
+        "lat": 47.6349232,
+        "lon": -122.3508623
+      },
+      "modes": {
+        "shortest": {
+          "elapsed_s": 0.09052739199978532,
+          "weight_evaluations": 40512,
+          "distance_m": 3460.711422297159,
+          "mean_accessibility": 0.5609001836209992,
+          "mean_confidence": 0.0933741807639106,
+          "segment_count": 205,
+          "unknown_segments": 96,
+          "dominant_hazards": 10
+        },
+        "accessible": {
+          "elapsed_s": 0.22097196499998972,
+          "weight_evaluations": 40538,
+          "distance_m": 3467.403186361667,
+          "mean_accessibility": 0.5663042988317588,
+          "mean_confidence": 0.09987593270634078,
+          "segment_count": 209,
+          "unknown_segments": 101,
+          "dominant_hazards": 11
+        },
+        "confidence_aware": {
+          "elapsed_s": 0.11326502100018843,
+          "weight_evaluations": 40783,
+          "distance_m": 3572.466058679453,
+          "mean_accessibility": 0.5600838466391357,
+          "mean_confidence": 0.12419711138533972,
+          "segment_count": 231,
+          "unknown_segments": 98,
+          "dominant_hazards": 21
+        }
+      },
+      "status": "ok",
+      "modes_all_identical": false
+    },
+    {
+      "category": "long",
+      "origin": {
+        "node_id": 1,
+        "lat": 47.6094213,
+        "lon": -122.3414582
+      },
+      "destination": {
+        "node_id": 188,
+        "lat": 47.7219272,
+        "lon": -122.3373494
+      },
+      "modes": {
+        "shortest": {
+          "elapsed_s": 1.4854541099994094,
+          "weight_evaluations": 250450,
+          "distance_m": 13882.629282392521,
+          "mean_accessibility": 0.5254784807872345,
+          "mean_confidence": 0.06293875441878827,
+          "segment_count": 571,
+          "unknown_segments": 326,
+          "dominant_hazards": 28
+        },
+        "accessible": {
+          "elapsed_s": 1.4294193300011102,
+          "weight_evaluations": 255676,
+          "distance_m": 14201.721042540714,
+          "mean_accessibility": 0.5410703251432427,
+          "mean_confidence": 0.06505461427229364,
+          "segment_count": 739,
+          "unknown_segments": 406,
+          "dominant_hazards": 20
+        },
+        "confidence_aware": {
+          "elapsed_s": 1.2910006299989618,
+          "weight_evaluations": 244976,
+          "distance_m": 14277.194554021788,
+          "mean_accessibility": 0.5401218665173869,
+          "mean_confidence": 0.08526859847689497,
+          "segment_count": 713,
+          "unknown_segments": 352,
+          "dominant_hazards": 36
+        }
+      },
+      "status": "ok",
+      "modes_all_identical": false
+    },
+    {
+      "category": "well_labeled_area",
+      "origin": {
+        "node_id": 182623,
+        "lat": 47.6221484,
+        "lon": -122.3423649
+      },
+      "destination": {
+        "node_id": 182621,
+        "lat": 47.6219757,
+        "lon": -122.3423669
+      },
+      "modes": {
+        "shortest": {
+          "elapsed_s": 0.0002240109988633776,
+          "weight_evaluations": 46,
+          "distance_m": 48.71571302269298,
+          "mean_accessibility": 0.6018718806680301,
+          "mean_confidence": 0.1613885345099115,
+          "segment_count": 10,
+          "unknown_segments": 2,
+          "dominant_hazards": 0
+        },
+        "accessible": {
+          "elapsed_s": 5.4103000366012566e-05,
+          "weight_evaluations": 44,
+          "distance_m": 53.87770741686627,
+          "mean_accessibility": 0.70710928110171,
+          "mean_confidence": 0.26663103121747456,
+          "segment_count": 10,
+          "unknown_segments": 2,
+          "dominant_hazards": 0
+        },
+        "confidence_aware": {
+          "elapsed_s": 5.04019990330562e-05,
+          "weight_evaluations": 42,
+          "distance_m": 53.87770741686627,
+          "mean_accessibility": 0.70710928110171,
+          "mean_confidence": 0.26663103121747456,
+          "segment_count": 10,
+          "unknown_segments": 2,
+          "dominant_hazards": 0
+        }
+      },
+      "status": "ok",
+      "modes_all_identical": false
+    },
+    {
+      "category": "heavy_unknown_coverage",
+      "origin": {
+        "node_id": 140478,
+        "lat": 47.6556162,
+        "lon": -122.3058214
+      },
+      "destination": {
+        "node_id": 35152,
+        "lat": 47.6556789,
+        "lon": -122.3066684
+      },
+      "modes": {
+        "shortest": {
+          "elapsed_s": 8.090400115179364e-05,
+          "weight_evaluations": 37,
+          "distance_m": 64.91558132862983,
+          "mean_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "segment_count": 3,
+          "unknown_segments": 3,
+          "dominant_hazards": 0
+        },
+        "accessible": {
+          "elapsed_s": 6.91029999870807e-05,
+          "weight_evaluations": 37,
+          "distance_m": 64.91558132862983,
+          "mean_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "segment_count": 3,
+          "unknown_segments": 3,
+          "dominant_hazards": 0
+        },
+        "confidence_aware": {
+          "elapsed_s": 5.18020005983999e-05,
+          "weight_evaluations": 37,
+          "distance_m": 64.91558132862983,
+          "mean_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "segment_count": 3,
+          "unknown_segments": 3,
+          "dominant_hazards": 0
+        }
+      },
+      "status": "ok",
+      "modes_all_identical": true
+    },
+    {
+      "category": "cross_component",
+      "origin": {
+        "node_id": 1,
+        "lat": 47.6094213,
+        "lon": -122.3414582
+      },
+      "destination": {
+        "node_id": 4,
+        "lat": 47.5722648,
+        "lon": -122.403825
+      },
+      "modes": {},
+      "status": "no_connected_route",
+      "origin_component_id": 0,
+      "destination_component_id": 1
+    },
+    {
+      "category": "modes_agree",
+      "origin": {
+        "node_id": 1,
+        "lat": 47.6094213,
+        "lon": -122.3414582
+      },
+      "destination": {
+        "node_id": 9732,
+        "lat": 47.609397,
+        "lon": -122.341748
+      },
+      "modes": {
+        "shortest": {
+          "elapsed_s": 6.46030002826592e-05,
+          "weight_evaluations": 29,
+          "distance_m": 27.48976312679475,
+          "mean_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "segment_count": 6,
+          "unknown_segments": 6,
+          "dominant_hazards": 0
+        },
+        "accessible": {
+          "elapsed_s": 3.9802000173949637e-05,
+          "weight_evaluations": 29,
+          "distance_m": 27.48976312679475,
+          "mean_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "segment_count": 6,
+          "unknown_segments": 6,
+          "dominant_hazards": 0
+        },
+        "confidence_aware": {
+          "elapsed_s": 8.000399975571781e-05,
+          "weight_evaluations": 29,
+          "distance_m": 27.48976312679475,
+          "mean_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "segment_count": 6,
+          "unknown_segments": 6,
+          "dominant_hazards": 0
+        }
+      },
+      "status": "ok",
+      "modes_all_identical": true
+    },
+    {
+      "category": "modes_diverge",
+      "origin": {
+        "node_id": 85107,
+        "lat": 47.5231781,
+        "lon": -122.2789187
+      },
+      "destination": {
+        "node_id": 136407,
+        "lat": 47.6112901,
+        "lon": -122.3304894
+      },
+      "modes": {
+        "shortest": {
+          "elapsed_s": 0.4916439469998295,
+          "weight_evaluations": 111975,
+          "distance_m": 11263.298106570739,
+          "mean_accessibility": 0.5669313520809282,
+          "mean_confidence": 0.10668735928503031,
+          "segment_count": 582,
+          "unknown_segments": 247,
+          "dominant_hazards": 23
+        },
+        "accessible": {
+          "elapsed_s": 0.3441133409996837,
+          "weight_evaluations": 110136,
+          "distance_m": 11508.793563606514,
+          "mean_accessibility": 0.5848809134734643,
+          "mean_confidence": 0.11519641231259034,
+          "segment_count": 620,
+          "unknown_segments": 237,
+          "dominant_hazards": 11
+        },
+        "confidence_aware": {
+          "elapsed_s": 0.5174253229997703,
+          "weight_evaluations": 112004,
+          "distance_m": 11576.882912535253,
+          "mean_accessibility": 0.5867597967363767,
+          "mean_confidence": 0.1383895310063838,
+          "segment_count": 631,
+          "unknown_segments": 230,
+          "dominant_hazards": 33
+        }
+      },
+      "status": "ok",
+      "modes_all_identical": false
+    }
+  ]
+}

@@ -1,0 +1,1568 @@
+{
+  "evaluated_at": "2026-09-06T22:05:46.055686+00:00",
+  "frozen_pairs_source": "/docs/week7_benchmark_pairs.json",
+  "frozen_pairs_generated_at": "2026-09-06T20:51:38.328413+00:00",
+  "records": [
+    {
+      "category": "short",
+      "origin_node_id": 1,
+      "destination_node_id": 948,
+      "status": "ok",
+      "modes": {
+        "shortest": {
+          "distance_m": 420.5240262221582,
+          "estimated_time_s": 350.4366885184652,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.531406575628156,
+          "min_accessibility": 0.4663634677596284,
+          "mean_confidence": 0.039961991894669625,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 166.42884552168542,
+          "unknown_segment_proportion": 0.3957653668847993,
+          "low_confidence_segment_distance_m": 237.14865843738292,
+          "low_confidence_segment_proportion": 0.5639360503794375,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 31,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 0.0008038180003495654,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.18176337000113563
+        },
+        "accessible": {
+          "distance_m": 420.59819779493665,
+          "estimated_time_s": 350.4984981624472,
+          "added_distance_m_vs_shortest": 0.07417157277842534,
+          "added_time_s_vs_shortest": 0.06180964398202112,
+          "added_distance_pct_vs_shortest": 0.017637891809596944,
+          "mean_accessibility": 0.539488110830804,
+          "min_accessibility": 0.4753084288121157,
+          "mean_confidence": 0.04468796082095261,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 161.62885990988414,
+          "unknown_segment_proportion": 0.3842832916480697,
+          "low_confidence_segment_distance_m": 243.13983620201074,
+          "low_confidence_segment_proportion": 0.5780810224026541,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 30,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.001328828999248799,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.18176337000113563
+        },
+        "confidence_aware": {
+          "distance_m": 420.59819779493665,
+          "estimated_time_s": 350.4984981624472,
+          "added_distance_m_vs_shortest": 0.07417157277842534,
+          "added_time_s_vs_shortest": 0.06180964398202112,
+          "added_distance_pct_vs_shortest": 0.017637891809596944,
+          "mean_accessibility": 0.539488110830804,
+          "min_accessibility": 0.4753084288121157,
+          "mean_confidence": 0.04468796082095261,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 161.62885990988414,
+          "unknown_segment_proportion": 0.3842832916480697,
+          "low_confidence_segment_distance_m": 243.13983620201074,
+          "low_confidence_segment_proportion": 0.5780810224026541,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 30,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.0021572480000031646,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.18176337000113563
+        }
+      },
+      "modes_all_identical": false
+    },
+    {
+      "category": "medium",
+      "origin_node_id": 1,
+      "destination_node_id": 134,
+      "status": "ok",
+      "modes": {
+        "shortest": {
+          "distance_m": 3460.711422297159,
+          "estimated_time_s": 2883.9261852476325,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5609001836209992,
+          "min_accessibility": 0.21458805042876727,
+          "mean_confidence": 0.0933741807639106,
+          "min_confidence": 0.0,
+          "known_hazard_count": 10,
+          "hazard_details": [
+            {
+              "segment_id": 61305,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 108566,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 108583,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 108601,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 108632,
+              "hazard_type": "NoCurbRamp",
+              "severity": 1
+            },
+            {
+              "segment_id": 109101,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 109505,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 109506,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 109518,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 109536,
+              "hazard_type": "SurfaceProblem",
+              "severity": null
+            }
+          ],
+          "unknown_segment_distance_m": 1384.733899927905,
+          "unknown_segment_proportion": 0.4001298377571,
+          "low_confidence_segment_distance_m": 1835.9811841928217,
+          "low_confidence_segment_proportion": 0.5305213177740575,
+          "disputed_segment_distance_m": 149.70578640083403,
+          "disputed_segment_proportion": 0.0432586737617845,
+          "segment_count": 205,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 0.02762730399990687,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.4163509919999342
+        },
+        "accessible": {
+          "distance_m": 3467.403186361667,
+          "estimated_time_s": 2889.502655301389,
+          "added_distance_m_vs_shortest": 6.691764064507879,
+          "added_time_s_vs_shortest": 5.576470053756566,
+          "added_distance_pct_vs_shortest": 0.19336382748914685,
+          "mean_accessibility": 0.5663042988317588,
+          "min_accessibility": 0.21458805042876727,
+          "mean_confidence": 0.09987593270634078,
+          "min_confidence": 0.0,
+          "known_hazard_count": 11,
+          "hazard_details": [
+            {
+              "segment_id": 30723,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 61305,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 108566,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 108583,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 108601,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 108632,
+              "hazard_type": "NoCurbRamp",
+              "severity": 1
+            },
+            {
+              "segment_id": 108634,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 109505,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 109506,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 109518,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 109536,
+              "hazard_type": "SurfaceProblem",
+              "severity": null
+            }
+          ],
+          "unknown_segment_distance_m": 1468.8166636500994,
+          "unknown_segment_proportion": 0.4236071159614187,
+          "low_confidence_segment_distance_m": 1821.033685446181,
+          "low_confidence_segment_proportion": 0.5251865986075258,
+          "disputed_segment_distance_m": 73.8552008625951,
+          "disputed_segment_proportion": 0.02129985954707825,
+          "segment_count": 209,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.08603307799967297,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.4163509919999342
+        },
+        "confidence_aware": {
+          "distance_m": 3572.466058679453,
+          "estimated_time_s": 2977.055048899544,
+          "added_distance_m_vs_shortest": 111.75463638229394,
+          "added_time_s_vs_shortest": 93.12886365191162,
+          "added_distance_pct_vs_shortest": 3.2292388109064922,
+          "mean_accessibility": 0.5600838466391357,
+          "min_accessibility": 0.0,
+          "mean_confidence": 0.12419711138533972,
+          "min_confidence": 0.0,
+          "known_hazard_count": 21,
+          "hazard_details": [
+            {
+              "segment_id": 22624,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 29611,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 30607,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 30608,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 30688,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 61305,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 108566,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 108583,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 108601,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 108632,
+              "hazard_type": "NoCurbRamp",
+              "severity": 1
+            },
+            {
+              "segment_id": 108641,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 109089,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 109101,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 109112,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 109229,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 109505,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 109506,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 109518,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 109531,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 109537,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 112213,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            }
+          ],
+          "unknown_segment_distance_m": 1370.9692607930729,
+          "unknown_segment_proportion": 0.3837599121375126,
+          "low_confidence_segment_distance_m": 1577.4143604634278,
+          "low_confidence_segment_proportion": 0.4415477528837635,
+          "disputed_segment_distance_m": 160.6841598063766,
+          "disputed_segment_proportion": 0.04497849865248904,
+          "segment_count": 231,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.1333671129996219,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.4163509919999342
+        }
+      },
+      "modes_all_identical": false
+    },
+    {
+      "category": "long",
+      "origin_node_id": 1,
+      "destination_node_id": 188,
+      "status": "ok",
+      "modes": {
+        "shortest": {
+          "distance_m": 13882.629282392521,
+          "estimated_time_s": 11568.857735327101,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5254784807872345,
+          "min_accessibility": 0.0,
+          "mean_confidence": 0.06293875441878827,
+          "min_confidence": 0.0,
+          "known_hazard_count": 28,
+          "hazard_details": [
+            {
+              "segment_id": 22929,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 35353,
+              "hazard_type": "SurfaceProblem",
+              "severity": null
+            },
+            {
+              "segment_id": 35355,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 35356,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 35357,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 35368,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 35627,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 44915,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 44995,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 45039,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 45151,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 45153,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 45362,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 45506,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 46203,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 46998,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 57821,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 57825,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 90434,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 90582,
+              "hazard_type": "Obstacle",
+              "severity": null
+            },
+            {
+              "segment_id": 110617,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 111271,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 111635,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 111737,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 178193,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 178194,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 178326,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 178858,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            }
+          ],
+          "unknown_segment_distance_m": 7487.787588446279,
+          "unknown_segment_proportion": 0.5393637931355781,
+          "low_confidence_segment_distance_m": 3809.1854863055564,
+          "low_confidence_segment_proportion": 0.2743850180553899,
+          "disputed_segment_distance_m": 7.147693357883027,
+          "disputed_segment_proportion": 0.0005148659675691634,
+          "segment_count": 571,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 0.24457934199926967,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 1.8559744329995738
+        },
+        "accessible": {
+          "distance_m": 14201.721042540714,
+          "estimated_time_s": 11834.767535450595,
+          "added_distance_m_vs_shortest": 319.0917601481924,
+          "added_time_s_vs_shortest": 265.9098001234937,
+          "added_distance_pct_vs_shortest": 2.298496586326768,
+          "mean_accessibility": 0.5410703251432427,
+          "min_accessibility": 0.0,
+          "mean_confidence": 0.06505461427229364,
+          "min_confidence": 0.0,
+          "known_hazard_count": 20,
+          "hazard_details": [
+            {
+              "segment_id": 12054,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 22929,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 44915,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 44989,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 44990,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 45151,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 45153,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 45506,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 60009,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 63798,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 90429,
+              "hazard_type": "Obstacle",
+              "severity": null
+            },
+            {
+              "segment_id": 111149,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 111501,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 178226,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 178828,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 178829,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 193949,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 200487,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 201006,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 201027,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            }
+          ],
+          "unknown_segment_distance_m": 7081.397278261636,
+          "unknown_segment_proportion": 0.4986295151868974,
+          "low_confidence_segment_distance_m": 6503.488543688944,
+          "low_confidence_segment_proportion": 0.45793664896022057,
+          "disputed_segment_distance_m": 357.1910080196599,
+          "disputed_segment_proportion": 0.025151248003654474,
+          "segment_count": 739,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.6836507299994992,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 1.8559744329995738
+        },
+        "confidence_aware": {
+          "distance_m": 14277.194554021788,
+          "estimated_time_s": 11897.66212835149,
+          "added_distance_m_vs_shortest": 394.56527162926614,
+          "added_time_s_vs_shortest": 328.80439302438845,
+          "added_distance_pct_vs_shortest": 2.842150889455049,
+          "mean_accessibility": 0.5401218665173869,
+          "min_accessibility": 0.0,
+          "mean_confidence": 0.08526859847689497,
+          "min_confidence": 0.0,
+          "known_hazard_count": 36,
+          "hazard_details": [
+            {
+              "segment_id": 9485,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 12061,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 12064,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 12065,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 12068,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 12072,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 12074,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 12075,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 12076,
+              "hazard_type": "NoSidewalk",
+              "severity": null
+            },
+            {
+              "segment_id": 22929,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 35323,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 44915,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 44944,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 45151,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 45153,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 45506,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 46196,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 46201,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 46204,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 46394,
+              "hazard_type": "NoCurbRamp",
+              "severity": 1
+            },
+            {
+              "segment_id": 46998,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 60009,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 63798,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 90454,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 90582,
+              "hazard_type": "Obstacle",
+              "severity": null
+            },
+            {
+              "segment_id": 178226,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 178828,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 178829,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 178847,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 193949,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 200343,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 200481,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 200958,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 201006,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 201022,
+              "hazard_type": "NoCurbRamp",
+              "severity": 3
+            },
+            {
+              "segment_id": 201027,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            }
+          ],
+          "unknown_segment_distance_m": 5171.995471826875,
+          "unknown_segment_proportion": 0.3622557255388776,
+          "low_confidence_segment_distance_m": 5895.065487346503,
+          "low_confidence_segment_proportion": 0.4129008304146071,
+          "disputed_segment_distance_m": 65.72547359060088,
+          "disputed_segment_proportion": 0.0046035286093433865,
+          "segment_count": 713,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.7519947230011894,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 1.8559744329995738
+        }
+      },
+      "modes_all_identical": false
+    },
+    {
+      "category": "well_labeled_area",
+      "origin_node_id": 182623,
+      "destination_node_id": 182621,
+      "status": "ok",
+      "modes": {
+        "shortest": {
+          "distance_m": 48.71571302269298,
+          "estimated_time_s": 40.59642751891082,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.6018718806680301,
+          "min_accessibility": 0.34418134634985637,
+          "mean_confidence": 0.1613885345099115,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 3.6000580010043284,
+          "unknown_segment_proportion": 0.07389931867213628,
+          "low_confidence_segment_distance_m": 29.458158035444118,
+          "low_confidence_segment_proportion": 0.604695204229522,
+          "disputed_segment_distance_m": 9.159202003776175,
+          "disputed_segment_proportion": 0.18801330074979283,
+          "segment_count": 10,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 0.00011650300075416453,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.007879872000557953
+        },
+        "accessible": {
+          "distance_m": 53.87770741686627,
+          "estimated_time_s": 44.89808951405523,
+          "added_distance_m_vs_shortest": 5.161994394173291,
+          "added_time_s_vs_shortest": 4.30166199514441,
+          "added_distance_pct_vs_shortest": 10.596158967782545,
+          "mean_accessibility": 0.70710928110171,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.26663103121747456,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 3.332735934610927,
+          "unknown_segment_proportion": 0.061857419225815516,
+          "low_confidence_segment_distance_m": 10.163030424870612,
+          "low_confidence_segment_proportion": 0.18863145653612393,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 10,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 6.580199988093227e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.007879872000557953
+        },
+        "confidence_aware": {
+          "distance_m": 53.87770741686627,
+          "estimated_time_s": 44.89808951405523,
+          "added_distance_m_vs_shortest": 5.161994394173291,
+          "added_time_s_vs_shortest": 4.30166199514441,
+          "added_distance_pct_vs_shortest": 10.596158967782545,
+          "mean_accessibility": 0.70710928110171,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.26663103121747456,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 3.332735934610927,
+          "unknown_segment_proportion": 0.061857419225815516,
+          "low_confidence_segment_distance_m": 10.163030424870612,
+          "low_confidence_segment_proportion": 0.18863145653612393,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 10,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 6.250099977478385e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.007879872000557953
+        }
+      },
+      "modes_all_identical": false
+    },
+    {
+      "category": "heavy_unknown_coverage",
+      "origin_node_id": 140478,
+      "destination_node_id": 35152,
+      "status": "ok",
+      "modes": {
+        "shortest": {
+          "distance_m": 64.91558132862983,
+          "estimated_time_s": 54.09631777385819,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 64.91558132862983,
+          "unknown_segment_proportion": 1.0,
+          "low_confidence_segment_distance_m": 0,
+          "low_confidence_segment_proportion": 0.0,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 3,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 4.9201000365428627e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.0074070620012207655
+        },
+        "accessible": {
+          "distance_m": 64.91558132862983,
+          "estimated_time_s": 54.09631777385819,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 64.91558132862983,
+          "unknown_segment_proportion": 1.0,
+          "low_confidence_segment_distance_m": 0,
+          "low_confidence_segment_proportion": 0.0,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 3,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 6.790199950046372e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.0074070620012207655
+        },
+        "confidence_aware": {
+          "distance_m": 64.91558132862983,
+          "estimated_time_s": 54.09631777385819,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 64.91558132862983,
+          "unknown_segment_proportion": 1.0,
+          "low_confidence_segment_distance_m": 0,
+          "low_confidence_segment_proportion": 0.0,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 3,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 7.820099926902913e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.0074070620012207655
+        }
+      },
+      "modes_all_identical": true
+    },
+    {
+      "category": "cross_component",
+      "origin_node_id": 1,
+      "destination_node_id": 4,
+      "status": "no_connected_route",
+      "modes": {}
+    },
+    {
+      "category": "modes_agree",
+      "origin_node_id": 1,
+      "destination_node_id": 9732,
+      "status": "ok",
+      "modes": {
+        "shortest": {
+          "distance_m": 27.48976312679475,
+          "estimated_time_s": 22.908135938995624,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 27.489763126794752,
+          "unknown_segment_proportion": 1.0000000000000002,
+          "low_confidence_segment_distance_m": 0,
+          "low_confidence_segment_proportion": 0.0,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 6,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 7.67010005802149e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.004975907999323681
+        },
+        "accessible": {
+          "distance_m": 27.48976312679475,
+          "estimated_time_s": 22.908135938995624,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 27.489763126794752,
+          "unknown_segment_proportion": 1.0000000000000002,
+          "low_confidence_segment_distance_m": 0,
+          "low_confidence_segment_proportion": 0.0,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 6,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 5.270099973131437e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.004975907999323681
+        },
+        "confidence_aware": {
+          "distance_m": 27.48976312679475,
+          "estimated_time_s": 22.908135938995624,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5,
+          "min_accessibility": 0.5,
+          "mean_confidence": 0.0,
+          "min_confidence": 0.0,
+          "known_hazard_count": 0,
+          "hazard_details": [],
+          "unknown_segment_distance_m": 27.489763126794752,
+          "unknown_segment_proportion": 1.0000000000000002,
+          "low_confidence_segment_distance_m": 0,
+          "low_confidence_segment_proportion": 0.0,
+          "disputed_segment_distance_m": 0,
+          "disputed_segment_proportion": 0.0,
+          "segment_count": 6,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 5.030100146541372e-05,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.004975907999323681
+        }
+      },
+      "modes_all_identical": true
+    },
+    {
+      "category": "modes_diverge",
+      "origin_node_id": 85107,
+      "destination_node_id": 136407,
+      "status": "ok",
+      "modes": {
+        "shortest": {
+          "distance_m": 11263.298106570739,
+          "estimated_time_s": 9386.081755475616,
+          "added_distance_m_vs_shortest": 0.0,
+          "added_time_s_vs_shortest": 0.0,
+          "added_distance_pct_vs_shortest": 0.0,
+          "mean_accessibility": 0.5669313520809282,
+          "min_accessibility": 0.08737947179884997,
+          "mean_confidence": 0.10668735928503031,
+          "min_confidence": 0.0,
+          "known_hazard_count": 23,
+          "hazard_details": [
+            {
+              "segment_id": 10410,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 20395,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 20419,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 36656,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 36662,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 38652,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 43791,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 43816,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 44133,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 44156,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 47843,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 49297,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 93910,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 93911,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 93912,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 93913,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 93943,
+              "hazard_type": "NoCurbRamp",
+              "severity": null
+            },
+            {
+              "segment_id": 133974,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 134810,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 135172,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 168379,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 175023,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 175032,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            }
+          ],
+          "unknown_segment_distance_m": 4368.780688154851,
+          "unknown_segment_proportion": 0.3878775689694486,
+          "low_confidence_segment_distance_m": 4756.758722472712,
+          "low_confidence_segment_proportion": 0.4223237880650369,
+          "disputed_segment_distance_m": 104.96282272945652,
+          "disputed_segment_proportion": 0.009319013111108523,
+          "segment_count": 582,
+          "geometry_differs_from_shortest": false,
+          "routing_computation_s": 0.05506860300010885,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.4884834460008278
+        },
+        "accessible": {
+          "distance_m": 11508.793563606514,
+          "estimated_time_s": 9590.661303005429,
+          "added_distance_m_vs_shortest": 245.49545703577496,
+          "added_time_s_vs_shortest": 204.5795475298125,
+          "added_distance_pct_vs_shortest": 2.179605429182051,
+          "mean_accessibility": 0.5848809134734643,
+          "min_accessibility": 0.15000000000000002,
+          "mean_confidence": 0.11519641231259034,
+          "min_confidence": 0.0,
+          "known_hazard_count": 11,
+          "hazard_details": [
+            {
+              "segment_id": 10410,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 20395,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 20419,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 44161,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 44163,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 44669,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 44827,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 49297,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 93931,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 170232,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 206445,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            }
+          ],
+          "unknown_segment_distance_m": 4671.331555011257,
+          "unknown_segment_proportion": 0.40589237518197346,
+          "low_confidence_segment_distance_m": 5561.004551939802,
+          "low_confidence_segment_proportion": 0.48319613356564095,
+          "disputed_segment_distance_m": 41.31893776767561,
+          "disputed_segment_proportion": 0.003590205831681238,
+          "segment_count": 620,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.1647306969989586,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.4884834460008278
+        },
+        "confidence_aware": {
+          "distance_m": 11576.882912535253,
+          "estimated_time_s": 9647.402427112711,
+          "added_distance_m_vs_shortest": 313.5848059645141,
+          "added_time_s_vs_shortest": 261.3206716370951,
+          "added_distance_pct_vs_shortest": 2.7841295062729112,
+          "mean_accessibility": 0.5867597967363767,
+          "min_accessibility": 0.08737947179884997,
+          "mean_confidence": 0.1383895310063838,
+          "min_confidence": 0.0,
+          "known_hazard_count": 33,
+          "hazard_details": [
+            {
+              "segment_id": 10410,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 20371,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 20372,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 20395,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 20419,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 31531,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 36662,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 38652,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 43791,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 43816,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 44103,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 44104,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 44133,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 44156,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 44624,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 44669,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 44705,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 44827,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 49567,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 53762,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 71612,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 93910,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 93911,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 93912,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 93913,
+              "hazard_type": "Obstacle",
+              "severity": 2
+            },
+            {
+              "segment_id": 93943,
+              "hazard_type": "NoCurbRamp",
+              "severity": null
+            },
+            {
+              "segment_id": 128979,
+              "hazard_type": "Obstacle",
+              "severity": 3
+            },
+            {
+              "segment_id": 135819,
+              "hazard_type": "SurfaceProblem",
+              "severity": 2
+            },
+            {
+              "segment_id": 136474,
+              "hazard_type": "NoCurbRamp",
+              "severity": 2
+            },
+            {
+              "segment_id": 159209,
+              "hazard_type": "Obstacle",
+              "severity": 1
+            },
+            {
+              "segment_id": 168379,
+              "hazard_type": "SurfaceProblem",
+              "severity": 3
+            },
+            {
+              "segment_id": 170232,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            },
+            {
+              "segment_id": 175023,
+              "hazard_type": "SurfaceProblem",
+              "severity": 1
+            }
+          ],
+          "unknown_segment_distance_m": 3265.5858869141853,
+          "unknown_segment_proportion": 0.2820781648727106,
+          "low_confidence_segment_distance_m": 5338.804648964383,
+          "low_confidence_segment_proportion": 0.46116080548621735,
+          "disputed_segment_distance_m": 43.27084256503688,
+          "disputed_segment_proportion": 0.0037376937204905082,
+          "segment_count": 631,
+          "geometry_differs_from_shortest": true,
+          "routing_computation_s": 0.20719712599930062,
+          "algorithm": "astar",
+          "total_http_latency_s_for_all_3_modes": 0.4884834460008278
+        }
+      },
+      "modes_all_identical": false
+    }
+  ],
+  "aggregate_summary": {
+    "total_pairs": 8,
+    "ok_pairs": 7,
+    "no_connected_route_pairs": 1,
+    "pairs_with_mode_divergence": 5,
+    "pairs_with_mode_divergence_fraction": 0.7142857142857143,
+    "accessible_added_distance_pct_median": 0.19336382748914685,
+    "accessible_added_distance_pct_max": 10.596158967782545,
+    "confidence_aware_added_distance_pct_median": 2.7841295062729112,
+    "confidence_aware_added_distance_pct_max": 10.596158967782545,
+    "mean_unknown_segment_proportion_shortest": 0.5424336979170089,
+    "mean_unknown_segment_proportion_confidence_aware": 0.4963192162032838
+  }
+}

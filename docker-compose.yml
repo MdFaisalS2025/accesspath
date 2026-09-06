@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: accesspath
+      POSTGRES_USER: accesspath
+      POSTGRES_PASSWORD: accesspath_dev_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./backend/db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U accesspath -d accesspath"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: postgresql://accesspath:accesspath_dev_only@db:5432/accesspath
+      # Week 7: explicit rather than relying on app.main's default, so a
+      # deployment only has to change this one line (or a real .env) to
+      # point CORS at a different frontend origin -- see app/main.py.
+      ALLOWED_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - ./data:/data:ro
+      - ./docs:/docs
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      # Browser-side calls hit the API via the host's published port, not
+      # the api container's internal Docker DNS name (the browser isn't on
+      # the compose network) -- keep this overridable per docs/week6_frontend_report.md.
+      VITE_API_BASE_URL: http://localhost:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  db_data:
