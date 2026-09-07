@@ -2,7 +2,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./MapView.css";
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
-import { Coordinate, GeoJSONFeatureCollection, RouteCompareOk, RouteMode } from "../api/types";
+import { Coordinate, DeploymentInfo, GeoJSONFeatureCollection, RouteCompareOk, RouteMode } from "../api/types";
 import { ROUTE_COLORS_RESOLVED, ROUTE_STYLES } from "../lib/routeStyle";
 
 // Free, key-less OSM raster tiles -- permitted for light development/demo
@@ -44,12 +44,28 @@ interface MapViewProps {
     disputed: boolean;
     labels: boolean;
   };
+  // GET /deployment-info's coverage_boundary, only non-null when this
+  // build is talking to the hosted-subset demo backend. Drawn as a subtle
+  // outline (never filled, never obscures the basemap) so a visitor can
+  // see roughly where the hosted demo actually has data, without it
+  // competing visually with the route lines it's meant to give context to.
+  hostedSubsetBoundary: DeploymentInfo["coverage_boundary"];
 }
 
 const ROUTE_LAYER_ORDER: RouteMode[] = ["shortest", "accessible", "confidence_aware"];
 
 export const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
-  { origin, destination, onMapClick, routeResult, selectedMode, coverageSegments, coverageLabels, coverageVisible },
+  {
+    origin,
+    destination,
+    onMapClick,
+    routeResult,
+    selectedMode,
+    coverageSegments,
+    coverageLabels,
+    coverageVisible,
+    hostedSubsetBoundary,
+  },
   ref,
 ) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -284,6 +300,51 @@ export const MapView = forwardRef<MapViewHandle, MapViewProps>(function MapView(
       map.once("load", applyCoverage);
     }
   }, [coverageSegments, coverageLabels, coverageVisible]);
+
+  // Hosted-demo coverage-boundary layer (only present when
+  // hostedSubsetBoundary is non-null, i.e. this build is talking to the
+  // free-tier subset backend). A thin dashed outline with a faint fill --
+  // visible enough to answer "where does this demo actually have data",
+  // restrained enough not to compete with the route lines it exists to
+  // give context to. See requirement: "visible but restrained."
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const sourceId = "hosted-subset-boundary";
+
+    const applyBoundary = () => {
+      if (map.getLayer(`${sourceId}-fill`)) map.removeLayer(`${sourceId}-fill`);
+      if (map.getLayer(`${sourceId}-line`)) map.removeLayer(`${sourceId}-line`);
+      if (map.getSource(sourceId)) map.removeSource(sourceId);
+
+      if (!hostedSubsetBoundary) return;
+
+      map.addSource(sourceId, {
+        type: "geojson",
+        data: { type: "Feature", geometry: hostedSubsetBoundary as GeoJSON.Geometry, properties: {} },
+      });
+      map.addLayer({
+        id: `${sourceId}-fill`,
+        type: "fill",
+        source: sourceId,
+        paint: { "fill-color": "#0b5fa5", "fill-opacity": 0.04 },
+      });
+      map.addLayer({
+        id: `${sourceId}-line`,
+        type: "line",
+        source: sourceId,
+        layout: { "line-join": "round" },
+        paint: { "line-color": "#0b5fa5", "line-width": 2, "line-dasharray": [3, 2], "line-opacity": 0.6 },
+      });
+    };
+
+    if (map.isStyleLoaded()) {
+      applyBoundary();
+    } else {
+      map.once("load", applyBoundary);
+    }
+  }, [hostedSubsetBoundary]);
 
   return <div ref={containerRef} className="map-view" role="application" aria-label="Route map. Click to place origin and destination points." />;
 });

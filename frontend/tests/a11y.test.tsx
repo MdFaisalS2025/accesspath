@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { describe, expect, it, vi } from "vitest";
 import { RouteCard } from "../src/components/RouteCard";
@@ -16,6 +16,7 @@ vi.mock("../src/api/client", () => ({
   fetchLabels: vi.fn(),
   fetchSegmentGeometry: vi.fn(),
   fetchCoverageSummary: vi.fn(),
+  fetchDeploymentInfo: vi.fn().mockResolvedValue({ mode: "full", message: null, coverage_boundary: null }),
 }));
 
 const result: RouteResult = {
@@ -56,6 +57,11 @@ describe("accessibility", () => {
   it("App's initial state has no axe violations", async () => {
     const { default: App } = await import("../src/App");
     const { container } = render(<App />);
+    // Flush App's on-mount GET /deployment-info effect before axe inspects
+    // the DOM, for the same reason App.test.tsx does this -- otherwise the
+    // effect resolves after this test has already finished, outside any
+    // act() scope.
+    await act(async () => {});
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

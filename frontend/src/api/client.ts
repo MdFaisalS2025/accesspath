@@ -2,6 +2,7 @@ import {
   ApiError,
   ApiErrorBody,
   CoverageSummary,
+  DeploymentInfo,
   GeoJSONFeature,
   GeoJSONFeatureCollection,
   RouteCompareResponse,
@@ -104,6 +105,10 @@ export function fetchCoverageSummary(bbox: [number, number, number, number]): Pr
 
 export function fetchSegmentGeometry(segmentId: number): Promise<GeoJSONFeature> {
   return request<GeoJSONFeature>(`/segments/${segmentId}`);
+}
+
+export function fetchDeploymentInfo(): Promise<DeploymentInfo> {
+  return request<DeploymentInfo>("/deployment-info");
 }
 
 export { ApiError };

@@ -1,6 +1,14 @@
-import { useRef, useState } from "react";
-import { ApiError, compareRoutes, fetchLabels, fetchSegmentGeometry, fetchSegments } from "./api/client";
-import { Coordinate, GeoJSONFeatureCollection, RouteCompareNoConnection, RouteCompareOk, RouteMode } from "./api/types";
+import { useEffect, useRef, useState } from "react";
+import { ApiError, compareRoutes, fetchDeploymentInfo, fetchLabels, fetchSegmentGeometry, fetchSegments } from "./api/client";
+import {
+  Coordinate,
+  DeploymentInfo,
+  GeoJSONFeatureCollection,
+  RouteCompareNoConnection,
+  RouteCompareOk,
+  RouteMode,
+} from "./api/types";
+import { CoverageBanner } from "./components/CoverageBanner";
 import { CoverageControl, CoverageVisibility } from "./components/CoverageControl";
 import { DisclaimerBar } from "./components/DisclaimerBar";
 import { MapView, MapViewHandle } from "./components/MapView";
@@ -52,6 +60,21 @@ export default function App() {
   });
 
   const mapRef = useRef<MapViewHandle | null>(null);
+
+  // Fetched once on load, not build-time-baked -- the same frontend build
+  // works against either a full-dataset backend or the hosted-subset demo
+  // backend (see docs/deployment.md); which one it's talking to is a
+  // runtime fact from the API, not a compile-time constant. Silently stays
+  // null on failure -- if the backend is unreachable, StatusMessage/retry
+  // already communicates that; this banner just doesn't render rather than
+  // blocking the rest of the app.
+  const [deploymentInfo, setDeploymentInfo] = useState<DeploymentInfo | null>(null);
+  useEffect(() => {
+    fetchDeploymentInfo()
+      .then(setDeploymentInfo)
+      .catch(() => {});
+  }, []);
+  const isHostedSubset = deploymentInfo?.mode === "hosted_subset";
 
   function resetResults() {
     setStatus("idle");
@@ -158,6 +181,7 @@ export default function App() {
             coverageSegments={coverageSegments}
             coverageLabels={coverageLabels}
             coverageVisible={coverageVisibility}
+            hostedSubsetBoundary={deploymentInfo?.coverage_boundary ?? null}
           />
         </div>
 
@@ -191,6 +215,8 @@ export default function App() {
             <p role="status" aria-live="polite" className="app__loading">
               Comparing shortest, accessibility-optimized, and confidence-aware routes. This can take a few seconds
               for longer trips.
+              {isHostedSubset &&
+                " If this is the first request in a while, the hosted demo server may take up to about a minute to wake up -- it is not broken, just starting up."}
             </p>
           )}
 
@@ -242,6 +268,7 @@ export default function App() {
         </aside>
       </div>
 
+      {isHostedSubset && deploymentInfo?.message && <CoverageBanner message={deploymentInfo.message} />}
       <DisclaimerBar />
     </div>
   );

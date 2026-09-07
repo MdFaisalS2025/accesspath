@@ -58,6 +58,81 @@ def test_graph_health_endpoint_reports_loaded_graph(client):
     assert body["load_rss_mb"] > 0
 
 
+def test_ready_endpoint_returns_200_once_graph_is_loaded(client):
+    # The session-scoped client's lifespan has already run by the time any
+    # test executes, so the graph is loaded -- this confirms /ready reports
+    # success in that state, not just that the route exists.
+    resp = client.get("/ready")
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["status"] == "ready"
+    assert body["nodes"] > 0
+    assert body["edges"] > 0
+    assert body["deployment_mode"] == "full"
+
+
+def test_ready_endpoint_returns_503_when_graph_not_loaded():
+    # A deployment orchestrator's readiness probe must see a real failure
+    # status (not a 200 with a status field it has to parse) before the
+    # graph has loaded -- exercised with raise_server_exceptions=False the
+    # same way the other early-lifespan tests in this file do.
+    from fastapi.testclient import TestClient
+
+    from app.main import app
+
+    unraising_client = TestClient(app, raise_server_exceptions=False)
+    original_graph = getattr(app.state, "graph", "unset")
+    app.state.graph = None
+    try:
+        resp = unraising_client.get("/ready")
+        assert resp.status_code == 503
+        assert resp.json()["error"] == "not_ready"
+    finally:
+        if original_graph != "unset":
+            app.state.graph = original_graph
+
+
+# ---------------------------------------------------------------------------
+# Deployment info (hosted-subset disclosure -- see docs/deployment.md)
+# ---------------------------------------------------------------------------
+
+def test_deployment_info_defaults_to_full_mode(client):
+    resp = client.get("/deployment-info")
+    assert resp.status_code == 200
+    assert resp.json() == {"mode": "full", "message": None, "coverage_boundary": None}
+
+
+def test_deployment_info_reports_hosted_subset_when_configured(client, monkeypatch):
+    from app import main as main_module
+
+    monkeypatch.setattr(main_module, "DEPLOYMENT_MODE", "hosted_subset")
+    resp = client.get("/deployment-info")
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["mode"] == "hosted_subset"
+    assert "Hosted demo coverage is limited to selected Seattle areas" in body["message"]
+    assert "full Seattle dataset" in body["message"]
+    assert body["coverage_boundary"]["type"] in ("Polygon", "MultiPolygon")
+
+
+def test_deployment_info_fails_safe_if_hosted_subset_config_is_missing(client, monkeypatch, tmp_path):
+    # If DEPLOYMENT_MODE says hosted_subset but the committed coverage
+    # config is somehow absent, the response must not silently claim full
+    # coverage -- it must say coverage is unknown, which is the safe
+    # direction to fail in (see requirement 9: never imply data exists
+    # where it doesn't).
+    from app import main as main_module
+
+    monkeypatch.setattr(main_module, "DEPLOYMENT_MODE", "hosted_subset")
+    monkeypatch.setattr(main_module, "_HOSTED_SUBSET_COVERAGE_PATH", str(tmp_path / "missing.json"))
+    resp = client.get("/deployment-info")
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["mode"] == "hosted_subset"
+    assert "unknown" in body["message"].lower()
+    assert body["coverage_boundary"] is None
+
+
 # ---------------------------------------------------------------------------
 # Schema / validation -> 422
 # ---------------------------------------------------------------------------

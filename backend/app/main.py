@@ -6,6 +6,7 @@ works, rather than each request rebuilding it from the DB. See
 docs/week5_api_report.md for measured load time/memory and typical
 request latency.
 """
+import json
 import logging
 import os
 import resource
@@ -23,6 +24,41 @@ from app.routers import map as map_router
 from app.routers import route as route_router
 
 logger = logging.getLogger("accesspath")
+
+# Distinguishes the full local Seattle dataset from the free-tier hosted
+# demo, which runs against a graph-aware subset around the two frozen demo
+# routes only (see docs/deployment.md and
+# backend/scripts/build_hosted_subset.py). Defaults to "full" so local dev
+# and Docker Compose behave exactly as before this was added -- only the
+# hosted deployment's own environment sets DEPLOYMENT_MODE=hosted_subset.
+DEPLOYMENT_MODE = os.environ.get("DEPLOYMENT_MODE", "full")
+_HOSTED_SUBSET_COVERAGE_PATH = os.path.join(
+    os.path.dirname(__file__), "deployment_config", "hosted_subset_coverage.json"
+)
+
+
+def _load_deployment_info() -> dict:
+    if DEPLOYMENT_MODE != "hosted_subset":
+        return {"mode": "full", "message": None, "coverage_boundary": None}
+    try:
+        with open(_HOSTED_SUBSET_COVERAGE_PATH, encoding="utf-8") as f:
+            config = json.load(f)
+    except FileNotFoundError:
+        # DEPLOYMENT_MODE says hosted_subset but the committed config is
+        # missing -- fail loudly in the response rather than silently
+        # claiming full coverage, which would be exactly the misrepresentation
+        # this endpoint exists to prevent.
+        logger.error("DEPLOYMENT_MODE=hosted_subset but %s is missing", _HOSTED_SUBSET_COVERAGE_PATH)
+        return {
+            "mode": "hosted_subset",
+            "message": "Hosted demo coverage metadata is misconfigured. Treat all coverage as unknown.",
+            "coverage_boundary": None,
+        }
+    return {
+        "mode": config["mode"],
+        "message": config["message"],
+        "coverage_boundary": config["coverage_boundary"],
+    }
 
 
 @asynccontextmanager
@@ -133,3 +169,37 @@ def graph_health(request: Request) -> dict:
         "load_seconds": request.app.state.graph_load_seconds,
         "load_rss_mb": request.app.state.graph_load_rss_mb,
     }
+
+
+@app.get("/ready")
+def readiness(request: Request):
+    """Deployment readiness probe (Render's health check target): unlike
+    /health, which a load balancer would see as 200 the instant the ASGI
+    server accepts connections, this returns 503 -- not 200 with a
+    status field a prober would have to parse -- until the routing graph
+    has actually finished loading and has real content, so an orchestrator
+    correctly treats "up but graph still loading" as not-yet-ready."""
+    graph = getattr(request.app.state, "graph", None)
+    if graph is None or graph.number_of_nodes() == 0:
+        raise HTTPException(
+            status_code=503,
+            detail={"error": "not_ready", "message": "Routing graph is not loaded yet."},
+        )
+    return {
+        "status": "ready",
+        "nodes": graph.number_of_nodes(),
+        "edges": graph.number_of_edges(),
+        "deployment_mode": DEPLOYMENT_MODE,
+    }
+
+
+@app.get("/deployment-info")
+def deployment_info() -> dict:
+    """Tells the frontend whether it's talking to the full local dataset or
+    the hosted demo's geographic subset, plus (for the subset) the
+    disclosure message and boundary polygon the UI must show -- see
+    docs/deployment.md and Phase 2 of the hosted-demo plan. Static per
+    process (computed once, not per-request work), but exposed as an
+    endpoint rather than baked into the frontend build so the same
+    frontend build works against either a full or subset backend."""
+    return _load_deployment_info()

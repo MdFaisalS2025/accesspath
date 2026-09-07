@@ -15,6 +15,10 @@ vi.mock("../src/api/client", () => ({
   fetchLabels: vi.fn(),
   fetchSegmentGeometry: vi.fn(),
   fetchCoverageSummary: vi.fn(),
+  // Defaults to the "full" (non-hosted-subset) shape so every existing
+  // test's behavior is unaffected -- App.tsx's effect just stores this and
+  // silently no-ops on rejection either way.
+  fetchDeploymentInfo: vi.fn().mockResolvedValue({ mode: "full", message: null, coverage_boundary: null }),
   ApiError,
 }));
 
@@ -85,20 +89,28 @@ describe("App", () => {
     vi.clearAllMocks();
   });
 
-  it("shows the initial idle state before any coordinates are selected", () => {
+  it("shows the initial idle state before any coordinates are selected", async () => {
     render(<App />);
+    // App fetches GET /deployment-info once on mount (deciding whether to
+    // show the hosted-subset banner) -- flush that pending effect before
+    // asserting, or its resolution lands after the test ends, outside any
+    // act() scope (the same class of warning fixed earlier for the
+    // route-comparison loading test).
+    await act(async () => {});
     expect(screen.getByText(/Click the map to place your origin/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /compare routes/i })).toBeDisabled();
   });
 
-  it("shows the origin-selected state after one click", () => {
+  it("shows the origin-selected state after one click", async () => {
     render(<App />);
+    await act(async () => {});
     clickMap(47.6, -122.33);
     expect(screen.getByText(/Origin placed/)).toBeInTheDocument();
   });
 
-  it("enables Compare routes once both points are selected", () => {
+  it("enables Compare routes once both points are selected", async () => {
     render(<App />);
+    await act(async () => {});
     clickMap(47.6, -122.33);
     clickMap(47.61, -122.32);
     expect(screen.getByText(/Both points placed/)).toBeInTheDocument();
@@ -233,5 +245,22 @@ describe("App", () => {
     fireEvent.click(screen.getByRole("button", { name: /clear selection/i }));
     expect(screen.queryByText(/Route comparison/)).not.toBeInTheDocument();
     expect(screen.getByText(/Click the map to place your origin/)).toBeInTheDocument();
+  });
+
+  it("shows the hosted-subset coverage banner only when the backend reports that mode", async () => {
+    vi.mocked(client.fetchDeploymentInfo).mockResolvedValueOnce({
+      mode: "hosted_subset",
+      message: "Hosted demo coverage is limited to selected Seattle areas. The local project supports the full Seattle dataset.",
+      coverage_boundary: { type: "Polygon", coordinates: [] },
+    });
+    render(<App />);
+    await act(async () => {});
+    expect(screen.getByText(/Hosted demo coverage is limited to selected Seattle areas/)).toBeInTheDocument();
+  });
+
+  it("does not show the hosted-subset banner for the default full-dataset deployment", async () => {
+    render(<App />);
+    await act(async () => {});
+    expect(screen.queryByText(/Hosted demo coverage is limited/)).not.toBeInTheDocument();
   });
 });

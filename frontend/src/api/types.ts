@@ -125,3 +125,13 @@ export interface CoverageSummary {
   dominance_capped_segments: number;
   by_coverage_status: Record<string, CoverageSummaryEntry>;
 }
+
+// GET /deployment-info -- distinguishes the full local dataset from the
+// free-tier hosted demo's geographic subset (see docs/deployment.md).
+// "full" always has message/coverage_boundary null; "hosted_subset" always
+// has both populated (server-side fail-safe if its config is missing).
+export interface DeploymentInfo {
+  mode: "full" | "hosted_subset";
+  message: string | null;
+  coverage_boundary: GeoJSONLineString | { type: "Polygon" | "MultiPolygon"; coordinates: unknown } | null;
+}

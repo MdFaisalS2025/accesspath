@@ -52,6 +52,33 @@
   gap: var(--space-2);
 }
 
+/* Hosted-demo geographic-subset disclosure (GET /deployment-info,
+   mode "hosted_subset" only) -- deliberately quieter than .app__disclaimer
+   above: this states scope, not a risk, so it borrows the neutral surface
+   background and the informational accent color rather than the
+   warning/danger palette. Still always visible (not dismissible), since
+   the requirement is that the limitation stay disclosed, not just
+   noticed once. */
+.coverage-banner {
+  flex: 0 0 auto;
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  border-top: 1px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.coverage-banner span {
+  color: var(--color-accent);
+}
+
+.coverage-banner p {
+  margin: 0;
+}
+
 .app__coords {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);

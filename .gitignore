@@ -1,4 +1,5 @@
 data/raw/
+backend/generated/
 __pycache__/
 *.pyc
 .venv/
