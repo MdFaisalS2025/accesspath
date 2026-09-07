@@ -174,14 +174,30 @@ A new developer can: clone the repo, run `docker compose up` (starts empty schem
 
 ## Deployment
 
-**Not currently deployed anywhere.** The frontend is prepared for static hosting on **Vercel**; the backend and database are not part of this phase. Full detail in [`docs/deployment.md`](docs/deployment.md) — summary:
+**Live**: [https://accesspath-silk.vercel.app](https://accesspath-silk.vercel.app) (frontend) → [https://accesspath.onrender.com](https://accesspath.onrender.com) (API). A real public route comparison has been verified end-to-end against these URLs. Full detail in [`docs/deployment.md`](docs/deployment.md) — summary:
 
-- **Vercel hosts only `frontend/`** as a static Vite build (project Root Directory set to `frontend`; build command `npm run build`, output `dist` — both are Vercel's own Vite-project defaults, no `vercel.json` needed).
-- **FastAPI (`backend/`) requires its own separately deployed, persistent host** — not Vercel Functions. The API caches an in-memory routing graph (~370MB, ~2s to load) across requests, which a stateless serverless function can't do efficiently; migrating routing to a serverless model is out of scope for this phase.
-- **PostGIS requires a managed external Postgres instance** with the PostGIS extension enabled — not part of this phase either.
-- The frontend talks to the backend via the `VITE_API_BASE_URL` build-time environment variable (see [`.env.example`](frontend/.env.example)). If a production build is ever made **without** this set, the app now fails immediately with a clear "AccessPath is not configured" message instead of silently trying to reach `localhost:8000` in a visitor's browser.
-- Once a backend is deployed, its `ALLOWED_ORIGINS` environment variable must include the final Vercel domain, or the deployed frontend's requests will be rejected by CORS (the backend fails closed, not open, by design).
-- The offline data pipeline (OSM/Project Sidewalk ingestion, matching, scoring) is a one-time setup step against the target database, not something that runs on every API startup — see [`docs/deployment.md`](docs/deployment.md) for the production version of the same 6-step pipeline used locally.
+**⚠ The hosted demo serves a geographic subset, not the full Seattle dataset — see below.**
+
+- **Vercel** hosts `frontend/` as a static Vite build (Root Directory `frontend`, build command `npm run build`, output `dist` — Vercel's own Vite-project defaults, no `vercel.json` needed).
+- **Render** (free Web Service tier) hosts the FastAPI backend from `backend/Dockerfile`, connected to Neon over the internet. Free-tier services spin down after inactivity — **the first request after a period of idleness can take up to about a minute** to wake the server back up; the frontend's loading state says so explicitly when talking to the hosted deployment, rather than looking broken.
+- **Neon** (free Postgres tier, PostGIS enabled) hosts the database — **37MB actually used** of its 500MB limit.
+- `ALLOWED_ORIGINS` on Render includes the live Vercel domain; `VITE_API_BASE_URL` on Vercel points at the live Render URL. If either is ever unset or mismatched, the app fails with a clear, distinct message (a CORS error surfaces visibly in the browser console, and a missing `VITE_API_BASE_URL` at build time shows "AccessPath is not configured" instead of silently trying `localhost:8000`).
+
+### Hosted-demo geographic subset — read this before drawing conclusions from the hosted demo
+
+**The hosted deployment does not serve all of Seattle.** To fit a genuinely free database/hosting tier with real safety margin (rather than "barely fitting" the full 397MB dataset into a 500MB limit), the hosted demo runs against a graph-aware subset built around the two frozen demo routes (`modes_diverge`, `medium`) — a 450m-buffered corridor around both, not the whole city. The deployed UI states this directly ("Hosted demo coverage is limited to selected Seattle areas. The local project supports the full Seattle dataset.") and draws the actual covered area as a dashed boundary on the map. Outside that boundary, map endpoints correctly return empty results — never fabricated "unknown" placeholders implying data was ever loaded there.
+
+**To use the complete Seattle dataset**, run the project locally per [Local setup](#local-setup) above — local development always uses the full 213,508-segment dataset, never the hosted subset. See [`docs/deployment.md`](docs/deployment.md) for exactly how the subset is built (`backend/scripts/build_hosted_subset.py`) and imported (`backend/scripts/import_hosted_subset.py`), both idempotent and reproducible.
+
+### Provider limitations (measured, not assumed)
+
+| | Free-tier limit | Measured usage | Headroom |
+|---|---|---|---|
+| Neon (database) | 500MB storage | 37MB | 93% |
+| Render (backend) | 512MB RAM | ~100MB idle / 126MB peak (mixed concurrent load, locally simulated with a real 512MB container cap) | 75%+ |
+| Vercel (frontend) | Generous static-hosting limits | ~1MB build output | n/a |
+
+Render's free tier has no uptime guarantee and spins down when idle (see cold-start note above); Neon's free tier auto-suspends compute after 5 minutes of inactivity (the connecting API request simply waits slightly longer on the first query after a gap, no visible error). No payment method is on file with any of the three providers, and no paid tier or usage-based billing is enabled.
 
 ## Known limitations
 

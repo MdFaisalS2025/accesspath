@@ -1,6 +1,6 @@
 # Deployment Architecture
 
-**Status: deployment profile approved (Vercel + Render + Neon, portfolio-demo geographic subset), local build and validation in progress.** This document describes the target architecture and the exact configuration needed, and the measured results of the deployment-subset work so far. See the README's Deployment section for the current summary of what's live versus still pending.
+**Status: live.** Frontend at [https://accesspath-silk.vercel.app](https://accesspath-silk.vercel.app), backend at [https://accesspath.onrender.com](https://accesspath.onrender.com), database on Neon. A real public route comparison has been verified end-to-end through the deployed frontend, in a browser, against the deployed backend and database — see [What "live" means, verified](#what-live-means-verified) at the end of this document for the exact checks performed.
 
 ## Deployment profile: portfolio-demo geographic subset
 
@@ -105,6 +105,14 @@ Render's free tier spins down after inactivity; the frontend's loading state now
 
 No payment method is added, no paid tier is enabled, and no usage-based billing is turned on for any of these three services as part of this deployment.
 
-## What "live" will mean
+## What "live" means, verified
 
-This project will not be described as deployed or live until: the frontend is reachable at its Vercel URL, the backend is reachable at its own deployed URL with `ALLOWED_ORIGINS` updated to include the Vercel domain, and a real `POST /route/compare` request made from the deployed frontend to the deployed backend succeeds end-to-end. None of that has happened yet as of this document.
+All of the following were checked directly against the actual deployed services, not assumed from the deploy succeeding:
+
+- `GET /health`, `/ready`, `/health/graph`, `/deployment-info` on `https://accesspath.onrender.com` all return correct, expected responses (`/ready` reports `nodes: 19263, edges: 22390, deployment_mode: "hosted_subset"`, matching the imported Neon subset exactly).
+- Both frozen demo routes (`modes_diverge`, `medium`) return `status: "ok"` with distances matching the local/frozen-benchmark values to the meter, via direct requests to the live backend.
+- Map endpoints return real data inside the hosted subset's area and an empty (not fabricated) result outside it.
+- Out-of-service-area and invalid-coordinate requests return the correct 400/422 errors on the live backend.
+- **In a real browser**, from `https://accesspath-silk.vercel.app`: the app loads, the hosted-subset coverage banner and boundary layer render correctly, a real click-based origin/destination selection and "Compare routes" produces a real 3-mode comparison against the live backend, mode selection/duplicate-route detection work, mobile viewport (375×812) renders with no clipping, map attribution is present, and the browser console is clean of CORS/credential/unhandled-request errors (two stale 400s from an intentionally-invalid test click are the only console entries, both expected "no routable network" responses, not bugs).
+- Warm `POST /route/compare` latency (already-awake Render instance): 1.3–2.0s for the `modes_diverge` pair, over a real internet round trip through Render to Neon. Frontend initial load: ~180ms (Vercel CDN).
+- **Not directly reproduced in this session**: a true cold start after Render's ~15-minute inactivity spin-down (would require an idle wait longer than this session's testing window). The cold-start UI message was verified by code inspection and by the underlying local Phase 4 simulation's restart timings (~1.1s container restart-to-ready), not by an observed live 15-minute-idle wake-up.
