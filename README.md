@@ -3,6 +3,9 @@
 
 > **This is a decision-support research prototype built on incomplete, crowdsourced public data. It does not guarantee accessibility or safety, and its relative scores are not probabilities of any real-world outcome.** See [Limitations](#known-limitations) and [Ethical considerations](#ethical-considerations) before drawing any conclusion from it.
 
+![AccessPath comparing three routes in Seattle, with the confidence-aware explanation panel open](docs/screenshots/route-comparison.png)
+*A real, live comparison: three routes rendered on the map (solid = shortest, dashed = accessible, dotted = confidence-aware), with a deterministic, plain-language explanation of the trade-off on the right — not just a score.*
+
 ## What this is
 
 AccessPath compares three walking routes between two points in Seattle side by side:
@@ -169,6 +172,17 @@ A new developer can: clone the repo, run `docker compose up` (starts empty schem
 
 **Excluded from version control** (`.gitignore`): `data/raw/` (the ~370MB raw datasets), `__pycache__/`, `.venv/`/`venv/`, `node_modules/`, `.env`, `*.egg-info/`, `.pytest_cache/`, `frontend/dist/`, `frontend/tsconfig.tsbuildinfo`, Playwright's `test-results/`/`playwright-report/`, coverage output, and common editor/OS files (`.vscode/`, `.idea/`, `.DS_Store`, `Thumbs.db`). There is no database volume, generated cache file, or credential file tracked anywhere in the repo — the routing graph is rebuilt in-memory at API startup from the database every time, never serialized to disk. The `docker-compose.yml` Postgres password (`accesspath_dev_only`) is an explicitly-named local-only development credential, not a real secret.
 
+## Deployment
+
+**Not currently deployed anywhere.** The frontend is prepared for static hosting on **Vercel**; the backend and database are not part of this phase. Full detail in [`docs/deployment.md`](docs/deployment.md) — summary:
+
+- **Vercel hosts only `frontend/`** as a static Vite build (project Root Directory set to `frontend`; build command `npm run build`, output `dist` — both are Vercel's own Vite-project defaults, no `vercel.json` needed).
+- **FastAPI (`backend/`) requires its own separately deployed, persistent host** — not Vercel Functions. The API caches an in-memory routing graph (~370MB, ~2s to load) across requests, which a stateless serverless function can't do efficiently; migrating routing to a serverless model is out of scope for this phase.
+- **PostGIS requires a managed external Postgres instance** with the PostGIS extension enabled — not part of this phase either.
+- The frontend talks to the backend via the `VITE_API_BASE_URL` build-time environment variable (see [`.env.example`](frontend/.env.example)). If a production build is ever made **without** this set, the app now fails immediately with a clear "AccessPath is not configured" message instead of silently trying to reach `localhost:8000` in a visitor's browser.
+- Once a backend is deployed, its `ALLOWED_ORIGINS` environment variable must include the final Vercel domain, or the deployed frontend's requests will be rejected by CORS (the backend fails closed, not open, by design).
+- The offline data pipeline (OSM/Project Sidewalk ingestion, matching, scoring) is a one-time setup step against the target database, not something that runs on every API startup — see [`docs/deployment.md`](docs/deployment.md) for the production version of the same 6-step pipeline used locally.
+
 ## Known limitations
 
 - **This is not a safety or compliance tool.** Scores are relative and derived from incomplete crowdsourced/OSM data, not calibrated probabilities or an accessibility guarantee.
@@ -189,7 +203,7 @@ A new developer can: clone the repo, run `docker compose up` (starts empty schem
 
 ## Project scope and rejected features
 
-Explicitly out of scope for this project (not oversights — considered and deliberately excluded): slope/grade data, computer-vision analysis of Street View imagery, Mapillary integration, user accounts/authentication, deployment infrastructure beyond local Docker Compose, and any feature added purely for visual polish without a stated accessibility-routing purpose. Caching of route-comparison responses was also considered and rejected (Week 7) as adding staleness-management complexity disproportionate to a one-off local prototype's actual bottleneck.
+Explicitly out of scope for this project (not oversights — considered and deliberately excluded): slope/grade data, computer-vision analysis of Street View imagery, Mapillary integration, user accounts/authentication, migrating the backend to a serverless/Vercel-Functions architecture (see [Deployment](#deployment)), and any feature added purely for visual polish without a stated accessibility-routing purpose. Caching of route-comparison responses was also considered and rejected (Week 7) as adding staleness-management complexity disproportionate to a one-off local prototype's actual bottleneck.
 
 ## Future work
 

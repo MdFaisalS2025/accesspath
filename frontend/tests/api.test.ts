@@ -14,6 +14,8 @@ function mockFetchOnce(status: number, body: unknown, ok = status < 400) {
 
 afterEach(() => {
   vi.unstubAllGlobals();
+  vi.unstubAllEnvs();
+  vi.resetModules();
 });
 
 describe("api client", () => {
@@ -39,6 +41,19 @@ describe("api client", () => {
     );
     await expect(compareRoutes(1, 2, 3, 4)).rejects.toBeInstanceOf(ApiError);
     await expect(compareRoutes(1, 2, 3, 4)).rejects.toMatchObject({ status: 0 });
+  });
+
+  it("fails clearly, without attempting a request, when deployed without VITE_API_BASE_URL configured", async () => {
+    vi.resetModules();
+    vi.stubEnv("PROD", true);
+    vi.stubEnv("VITE_API_BASE_URL", "");
+    const fetchMock = vi.fn();
+    vi.stubGlobal("fetch", fetchMock);
+
+    const freshClient = await import("../src/api/client");
+    expect(freshClient.API_BASE_URL_MISCONFIGURED).toBe(true);
+    await expect(freshClient.compareRoutes(1, 2, 3, 4)).rejects.toMatchObject({ status: -1 });
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("builds the bbox query string for map endpoints", async () => {

@@ -23,6 +23,18 @@ function RetryButton({ onRetry }: { onRetry: () => void }) {
 // again; the fix there is picking different points, already stated in
 // the message, not a retry button that would mislead.
 export function StatusMessage({ error, onRetry }: StatusMessageProps) {
+  if (error.status === -1) {
+    // Deployment misconfiguration (client.ts's API_BASE_URL_MISCONFIGURED),
+    // not a transient failure -- no retry button, since retrying an
+    // identical request can't fix a build-time missing env var.
+    return (
+      <div className="status-message status-message--error" role="alert">
+        <h2>AccessPath is not configured</h2>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
+
   if (error.status === 0) {
     return (
       <div className="status-message status-message--error" role="alert">
